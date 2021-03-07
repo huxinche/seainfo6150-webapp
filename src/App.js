@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import DynamicArticle from "./DynamicArticle/DynamicArticle.jsx";
+import ArticleList from "./ArticleList/ArticleList"
 import { isEmpty } from "lodash";
 
-function App() {
+function App(props) {
   const [fetchedData, setFetchedData] = useState({});
-
+  const fetchedDataArray = Object.values(fetchedData)
   useEffect(() => {
     const fetchData = async () => {
       // performs a GET request
@@ -22,22 +23,20 @@ function App() {
   return isEmpty(fetchedData) ? null : (
     <div className="App">
       <Switch>
-        <Route exact path={`/articlelist`}></Route>
-        <Route
-          path={`/articlelist/:slug`}
-          render={({ match }) => {
-            // getting the parameters from the url and passing
-            // down to the component as props
-            console.log("this slug", match.params.slug);
-            return <div>Component</div>;
-          }}
-        />
-        <Route>
-          <DynamicArticle article={Object.values(fetchedData)[1]} />
+
+        <Route exact path={`/articlelist`}>
+          <ArticleList articles={fetchedDataArray}/>
         </Route>
+
+        <Route exact path={`/articlelist/:slug`} render={history=> {
+          return <DynamicArticle article={fetchedData[history.location.pathname.replace('/articlelist/', '')]}/>
+        }}>
+        </Route>
+        <Redirect from={'/*'} to={'/articlelist'}/>
       </Switch>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
+
