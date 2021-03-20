@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import ArticleList from "./ArticleList/ArticleList.jsx";
 import DynamicArticle from "./DynamicArticle/DynamicArticle.jsx";
 import { isEmpty } from "lodash";
@@ -37,6 +37,7 @@ function App() {
         <Route exact path="/articlelist">
           <ArticleList articles={Object.values(fetchedData)} />
         </Route>
+        <Redirect from={'/*'} to={'/articlelist'}/>
       </Switch>
     </div>
   );

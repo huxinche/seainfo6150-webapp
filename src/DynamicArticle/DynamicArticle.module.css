@@ -1,0 +1,13 @@
+.back{
+  color: #cc0000;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 18px;
+}
+.article{
+  border-radius: 10px;
+  border: 1px dashed gray;
+  margin-top: 16px;
+  box-shadow: 0 0 14px rgba(200,0,0,0.6);
+  padding: 16px 20px;
+}
