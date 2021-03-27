@@ -1,6 +1,7 @@
 import React from "react";
 import HTMLText from "../HTMLText/HTMLText.jsx";
 import { Link } from "react-router-dom";
+import ArticleImage from '../ArticleImage/ArticleImage';
 import styles from './DynamicArticle.module.css'
 
 const DynamicArticle = (props) => {
@@ -9,7 +10,9 @@ const DynamicArticle = (props) => {
       <Link to="/articlelist" className={styles.back}>Back</Link>
       <article className={styles.article}>
         <header>
-          <h1>{props.article.title}</h1>
+          <ArticleImage url={props.article.image._url} title={props.article.title}/>
+
+          <h1 className={styles.title}>{props.article.title}</h1>
           <address>
             by {props.article.author} (
             <a href={`mailto:${props.article.authorEmail}`}>

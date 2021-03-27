@@ -4,6 +4,9 @@
   cursor: pointer;
   font-size: 18px;
 }
+.title{
+  margin-top: 36px;
+}
 .article{
   border-radius: 10px;
   border: 1px dashed gray;
