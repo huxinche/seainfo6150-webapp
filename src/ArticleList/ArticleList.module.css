@@ -4,4 +4,6 @@
   background: #bbb;
   box-shadow: 0 0 10px rgba(200,0,0,0.6);
   margin: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
